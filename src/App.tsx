@@ -11,14 +11,16 @@ function App() {
     name: "Caio Silva",
   };
 
-  // Links principais
   const links = [
     {
       title: "Portfólio",
       url: "https://caiogsilvadev.vercel.app",
       icon: Briefcase,
     },
-    { title: "GitHub", url: "https://github.com/galaxyhf", icon: Github },
+    { title: "GitHub", 
+      url: "https://github.com/galaxyhf", 
+      icon: Github 
+    },
     {
       title: "LinkedIn",
       url: "https://linkedin.com/in/caio-silva-472498266",

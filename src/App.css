@@ -27,3 +27,20 @@
 .cursor-blink {
   animation: blink 1s infinite;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+body {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+body::-webkit-scrollbar {
+  display: none;  
+}
