@@ -14,7 +14,7 @@ function App() {
   const links = [
     {
       title: "Portfólio",
-      url: "https://caiogsilvadev.vercel.app",
+      url: "https://caiosilva.vercel.app",
       icon: Briefcase,
     },
     { title: "GitHub", 
