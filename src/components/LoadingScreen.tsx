@@ -1,51 +1,42 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function LoadingScreen() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!isLoading) return null;
+    const timer = window.setTimeout(() => setIsVisible(false), reduceMotion ? 120 : 850);
+    return () => window.clearTimeout(timer);
+  }, [reduceMotion]);
 
   return (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: isLoading ? 1 : 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="flex flex-col items-center">
-        {/* Iniciais CS */}
+    <AnimatePresence>
+      {isVisible && (
         <motion.div
-          className="text-2xl sm:text-2xl font-bold text-yellow-400 tracking-widest mb-3"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          className="loader"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0.08 : 0.45, ease: "easeOut" }}
+          aria-hidden="true"
         >
-          CS
-        </motion.div>
-
-        <div className="w-10 h-0.5 bg-gray-800 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-yellow-400 rounded-full"
-            animate={{
-              width: ["0%", "100%"],
-            }}
-            transition={{
-              duration: 0.9,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-      </div>
-    </motion.div>
+            className="loader-mark"
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            CS<span>.</span>
+          </motion.div>
+          <div className="loader-line">
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: reduceMotion ? 0.08 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

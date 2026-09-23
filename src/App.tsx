@@ -1,96 +1,120 @@
-import { Briefcase, Instagram, Linkedin, Github, Mail } from "lucide-react";
-import LinkCard from "./components/LinkCard";
+import {
+  BriefcaseBusiness,
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 import AnimatedBackground from "./components/AnimatedBackground";
+import LinkCard from "./components/LinkCard";
 import LoadingScreen from "./components/LoadingScreen";
 import TypewriterText from "./components/TypewriterText";
-import fotoProfile from "./assets/caio.png";
+import fotoProfile from "./assets/caio-optimized.png";
 import "./App.css";
 
+const links = [
+  {
+    title: "Portfólio",
+    description: "Projetos selecionados e estudos de caso",
+    url: "https://caiosilva.vercel.app",
+    icon: BriefcaseBusiness,
+    featured: true,
+  },
+  {
+    title: "GitHub",
+    description: "Código, experimentos e projetos abertos",
+    url: "https://github.com/galaxyhf",
+    icon: Github,
+  },
+  {
+    title: "LinkedIn",
+    description: "Experiência e trajetória profissional",
+    url: "https://linkedin.com/in/caio-silva-472498266",
+    icon: Linkedin,
+  },
+  {
+    title: "Instagram",
+    description: "Bastidores, rotina e interesses",
+    url: "https://www.instagram.com/cai0_gs/",
+    icon: Instagram,
+  },
+  {
+    title: "E-mail",
+    description: "Vamos conversar sobre uma ideia",
+    url: "mailto:caiogsilva2005@gmail.com",
+    icon: Mail,
+  },
+];
+
 function App() {
-  const profile = {
-    name: "Caio Silva",
-  };
-
-  const links = [
-    {
-      title: "Portfólio",
-      url: "https://caiosilva.vercel.app",
-      icon: Briefcase,
-    },
-    { title: "GitHub", 
-      url: "https://github.com/galaxyhf", 
-      icon: Github 
-    },
-    {
-      title: "LinkedIn",
-      url: "https://linkedin.com/in/caio-silva-472498266",
-      icon: Linkedin,
-    },
-    {
-      title: "Instagram",
-      url: "https://www.instagram.com/cai0_gs/",
-      icon: Instagram,
-    },
-    {
-      title: "Email",
-      url: "mailto:caiogsilva2005@gmail.com",
-      icon: Mail,
-    },
-  ];
-
   return (
     <>
       <LoadingScreen />
-      <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
-        {/* Fundo Animado */}
+
+      <main className="site-shell isolate">
         <AnimatedBackground />
 
-        {/* Conteúdo */}
-        <div className="relative z-10 w-full max-w-md mx-auto">
-          {/* Perfil */}
-          <div className="flex flex-col items-center mb-8 animate-fade-in">
-            {/* Avatar */}
-            <div
-              className="w-20 h-20 sm:w-24 sm:h-24 mb-4 bg-yellow-400/10 backdrop-blur-md
-                          border border-yellow-400/40 rounded-full overflow-hidden flex items-center justify-center"
-            >
-              <img
-                src={fotoProfile}
-                alt="Caio Silva"
-                className="w-full h-full object-cover"
-              />
+        <div className="page-frame relative z-10 flex min-h-svh flex-col">
+          <header className="topbar flex items-center justify-between" aria-label="Identificação do site">
+            <a className="monogram" href="#inicio" aria-label="Voltar ao início">
+              CS<span aria-hidden="true">.</span>
+            </a>
+            <p className="topbar-label">Desenvolvedor web · Brasil</p>
+          </header>
+
+          <section className="profile-layout" id="inicio" aria-labelledby="profile-name">
+            <div className="profile-intro flex flex-col items-start">
+              <div className="portrait-wrap relative aspect-square">
+                <div className="portrait-ring" aria-hidden="true" />
+                <img
+                  src={fotoProfile}
+                  alt="Retrato de Caio Silva"
+                  className="portrait block size-full rounded-full object-cover"
+                />
+                <span className="portrait-marker" aria-hidden="true" />
+              </div>
+
+              <div className="profile-copy">
+                <p className="role-label">Olá, eu sou</p>
+                <h1 id="profile-name">Caio Silva</h1>
+                <TypewriterText
+                  words={["Desenvolvedor web", "Front-end", "Criador de experiências digitais"]}
+                  className="typewriter"
+                />
+                <p className="profile-summary">
+                  Transformo ideias em experiências digitais claras, rápidas e bem construídas.
+                </p>
+              </div>
             </div>
 
-            {/* Nome */}
-            <h1 className="text-2xl sm:text-3xl font-semibold text-white mb-1 text-center">
-              {profile.name}
-            </h1>
+            <nav className="link-panel w-full" aria-label="Links de Caio Silva">
+              <div className="link-heading flex items-center justify-between">
+                <p>Onde me encontrar</p>
+                <span>{String(links.length).padStart(2, "0")} destinos</span>
+              </div>
 
-            {/* Descrição com Typewriter */}
-            <TypewriterText
-              words={["Desenvolvedor Web", "Front-End"]}
-              className="text-yellow-100 text-sm sm:text-base text-center mb-6 h-6"
-            />
-          </div>
+              <div className="link-list">
+                {links.map((link, index) => (
+                  <LinkCard
+                    key={link.title}
+                    index={index + 1}
+                    title={link.title}
+                    description={link.description}
+                    url={link.url}
+                    icon={link.icon}
+                    featured={link.featured}
+                  />
+                ))}
+              </div>
+            </nav>
+          </section>
 
-          {/* Links principais */}
-          <div className="flex flex-col items-center w-full px-4 mb-8">
-            {links.map((link, index) => (
-              <LinkCard
-                key={index}
-                title={link.title}
-                url={link.url}
-                icon={link.icon}
-              />
-            ))}
-          </div>
-
-          {/* Footer */}
-          <div className="text-center text-white/40 text-xs mt-4">
-            <p>© 2026 - Caio Silva - Todos os direitos reservados</p>
-          </div>
+          <footer className="flex items-center justify-between">
+            <p>© 2026 Caio Silva</p>
+            <p>Projetado e desenvolvido com atenção aos detalhes.</p>
+          </footer>
         </div>
-      </div>
+      </main>
     </>
   );
 }

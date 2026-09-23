@@ -1,3 +1,4 @@
+import { useReducedMotion } from "framer-motion";
 import { useTypewriter } from "react-simple-typewriter";
 
 interface TypewriterTextProps {
@@ -5,22 +6,21 @@ interface TypewriterTextProps {
   className?: string;
 }
 
-export default function TypewriterText({
-  words,
-  className = "",
-}: TypewriterTextProps) {
-  const [text] = useTypewriter({
+export default function TypewriterText({ words, className = "" }: TypewriterTextProps) {
+  const reduceMotion = useReducedMotion();
+  const [animatedText] = useTypewriter({
     words,
     loop: true,
-    typeSpeed: 100,
-    deleteSpeed: 80,
-    delaySpeed: 2000,
+    typeSpeed: 70,
+    deleteSpeed: 42,
+    delaySpeed: 1800,
   });
+  const visibleText = reduceMotion ? words[0] : animatedText;
 
   return (
-    <p className={className}>
-      {text}
-      <span className="cursor-blink ml-0.5 text-yellow-400">|</span>
+    <p className={className} aria-label={words.join(", ")}>
+      <span aria-hidden="true">{visibleText}</span>
+      {!reduceMotion && <span className="typewriter-cursor" aria-hidden="true" />}
     </p>
   );
 }
