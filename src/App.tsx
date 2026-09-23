@@ -59,7 +59,6 @@ function App() {
             <a className="monogram" href="#inicio" aria-label="Voltar ao início">
               CS<span aria-hidden="true">.</span>
             </a>
-            <p className="topbar-label">Desenvolvedor web · Brasil</p>
           </header>
 
           <section className="profile-layout" id="inicio" aria-labelledby="profile-name">
