@@ -15,7 +15,7 @@ const links = [
   {
     title: "Portfólio",
     description: "Projetos selecionados e estudos de caso",
-    url: "https://caiosilva.vercel.app",
+    url: "https://caiosilva.dev.br",
     icon: BriefcaseBusiness,
     featured: true,
   },
