@@ -1,10 +1,9 @@
 import {
   BriefcaseBusiness,
-  Github,
-  Instagram,
-  Linkedin,
   Mail,
+  MessagesCircle,
 } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-brand-icons";
 import AnimatedBackground from "./components/AnimatedBackground";
 import LinkCard from "./components/LinkCard";
 import LoadingScreen from "./components/LoadingScreen";
@@ -27,16 +26,22 @@ const links = [
     icon: Github,
   },
   {
-    title: "LinkedIn",
-    description: "Experiência e trajetória profissional",
-    url: "https://linkedin.com/in/caio-silva-472498266",
-    icon: Linkedin,
+    title: "WhatsApp",
+    description: "Contato direto por mensagem",
+    url: "https://wa.me/5521975335931?text=Ol%C3%A1%20Caio%2C%20estou%20entrando%20em%20contato%20referente%20a%20sua%20publica%C3%A7%C3%A3o",
+    icon: MessagesCircle,
   },
   {
     title: "Instagram",
     description: "Bastidores, rotina e interesses",
     url: "https://www.instagram.com/cai0_gs/",
     icon: Instagram,
+  },
+  {
+    title: "LinkedIn",
+    description: "Experiência e trajetória profissional",
+    url: "https://linkedin.com/in/caio-silva-472498266",
+    icon: Linkedin,
   },
   {
     title: "E-mail",
